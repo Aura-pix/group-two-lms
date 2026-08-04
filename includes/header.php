@@ -15,7 +15,7 @@
 
 // Adjust this if your project folder name is different
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/Library-management-system/');
+    define('BASE_URL', 'https://group-two-lms.onrender.com/');
 }
 ?>
 <!DOCTYPE html>
