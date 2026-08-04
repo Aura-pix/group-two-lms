@@ -1,23 +1,17 @@
 <?php
-/**
- * Database Connection File
- * -------------------------
- * Include this at the top of every page that needs the database:
- *   require_once 'config/db.php';        (from project root)
- *   require_once '../config/db.php';     (from a subfolder like books/)
- */
-
 $host = getenv('DB_HOST');
 $user = getenv('DB_USER');
 $pass = getenv('DB_PASS');
 $dbname = getenv('DB_NAME');
-$conn = mysqli_connect($host, $user, $pass, $dbname);
+$port = getenv('DB_PORT') ?: 3306;
+$ca_cert = __DIR__ . '/ca.pem'; // adjust path to wherever you save it
 
-// --- Check connection ---
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+$conn = mysqli_init();
+mysqli_ssl_set($conn, NULL, NULL, $ca_cert, NULL, NULL);
+
+if (!mysqli_real_connect($conn, $host, $user, $pass, $dbname, $port, NULL, MYSQLI_CLIENT_SSL)) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-// --- Set charset (prevents encoding issues with special characters) ---
 $conn->set_charset("utf8mb4");
 ?>
