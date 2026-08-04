@@ -7,14 +7,11 @@
  *   require_once '../config/db.php';     (from a subfolder like books/)
  */
 
-// --- Connection settings ---
-$db_host = "localhost";
-$db_user = "root";      // default XAMPP/WAMP username
-$db_pass = "";          // default XAMPP/WAMP password is blank
-$db_name = "library_db";
-
-// --- Create connection ---
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
+$host = getenv('DB_HOST');
+$user = getenv('DB_USER');
+$pass = getenv('DB_PASS');
+$dbname = getenv('DB_NAME');
+$conn = mysqli_connect($host, $user, $pass, $dbname);
 
 // --- Check connection ---
 if ($conn->connect_error) {
