@@ -2,9 +2,7 @@
 -- Library Management System — Database Setup
 -- ============================================
 
--- 1. Create the database
-CREATE DATABASE IF NOT EXISTS library_db;
-USE library_db;
+
 
 -- 2. Drop tables if re-running this script (safe re-run)
 DROP TABLE IF EXISTS issued_books;
