@@ -1,13 +1,2 @@
-// --- Connection settings ---
-$db_host = "localhost";
-$db_user = "root";      // default XAMPP/WAMP username
-$db_pass = "";          // default XAMPP/WAMP password is blank
-$db_name = "library_db";
 
-// --- Create connection ---
-$conn = new mysqli($db_host, $db_user, $db_pass, $db_name);
-
--- 1. Create the database
-CREATE DATABASE IF NOT EXISTS library_db;
-USE library_db;
 
