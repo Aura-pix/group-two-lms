@@ -15,7 +15,7 @@
 
 // Adjust this if your project folder name is different
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/group-two-lms/');
+    define('BASE_URL', '/Library-management-system/');
 }
 ?>
 <!DOCTYPE html>
