@@ -10,7 +10,7 @@ $authors_result = $conn->query("SELECT author_id, first_name, last_name FROM aut
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // --- Collect + trim input ---
     $title            = trim($_POST['title'] ?? '');
-    $author_id        = trim($_POST['author_id'] ?? '');
+    $author_id        = (int) trim($_POST['author_id'] ?? '');
     $isbn             = trim($_POST['isbn'] ?? '');
     $category         = trim($_POST['category'] ?? '');
     $total_copies     = trim($_POST['total_copies'] ?? '');
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $available_copies = $total_copies; // new book starts fully available
 
         $stmt = $conn->prepare("INSERT INTO books (title, author_id, isbn, category, total_copies, available_copies) VALUES (?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sisssi", $title, $author_id, $isbn, $category, $total_copies, $available_copies);
+        $stmt->bind_param("sissii", $title, $author_id, $isbn, $category, $total_copies, $available_copies);
 
         if ($stmt->execute()) {
             $success = true;

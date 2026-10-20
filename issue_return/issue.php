@@ -9,14 +9,14 @@ $books_result = $conn->query("SELECT book_id, title, available_copies FROM books
 $members_result = $conn->query("SELECT member_id, full_name FROM members ORDER BY full_name");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $book_id   = trim($_POST['book_id'] ?? '');
-    $member_id = trim($_POST['member_id'] ?? '');
+    $book_id   = (int) trim($_POST['book_id'] ?? '');
+    $member_id = (int) trim($_POST['member_id'] ?? '');
     $due_date  = trim($_POST['due_date'] ?? '');
 
-    if ($book_id === '') {
+    if ($book_id <= 0) {
         $errors[] = "Please select a book.";
     }
-    if ($member_id === '') {
+    if ($member_id <= 0) {
         $errors[] = "Please select a member.";
     }
     if ($due_date === '') {
